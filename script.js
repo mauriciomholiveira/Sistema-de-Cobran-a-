@@ -3,10 +3,11 @@ let templates = {};
 
 // Lista de arquivos de template (o nome do arquivo será o nome do template)
 const listaArquivos = [
-  "cobranca_dia1.txt",
-  "cobranca_dia2.txt",
-  "atraso_1_dia.txt",
-  "atraso_2_dia.txt",
+  "cobrança_dia_1.txt",
+  "cobrança_dia_5.txt",
+  "cobrança_dia_8.txt",
+  "cobrança_dia_10.txt",
+  "Em_atraso_dia_1.txt",  
   // adicione mais arquivos aqui
 ];
 
