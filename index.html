@@ -14,6 +14,15 @@
   <label>Telefones (um por linha):</label>
   <textarea id="telefones" rows="6"></textarea>
 
+  <!-- Controle de templates -->
+  <div class="template-controls">
+    <button onclick="abrirCriarMensagem()">Criar Nova Mensagem</button>
+    <select id="templateSelect" onchange="usarTemplate()">
+      <option value="">-- Selecione um template --</option>
+    </select>
+    <button onclick="salvarTemplate()">Salvar como Template</button>
+  </div>
+
   <label>Mensagem (use {nome} para personalizar):</label>
   <textarea id="mensagem" rows="10"></textarea>
 

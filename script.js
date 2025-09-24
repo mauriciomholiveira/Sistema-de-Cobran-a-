@@ -1,3 +1,61 @@
+const pastaTemplates = "./templates/";
+let templates = {};
+
+// Lista de arquivos de template (o nome do arquivo será o nome do template)
+const listaArquivos = [
+  "cobranca_dia1.txt",
+  "cobranca_dia2.txt",
+  "atraso_1_dia.txt",
+  "atraso_2_dia.txt",
+  // adicione mais arquivos aqui
+];
+
+// Função para carregar templates externos
+async function carregarTemplates() {
+  templates = {}; // limpa
+
+  for (const arquivo of listaArquivos) {
+    try {
+      const response = await fetch(`${pastaTemplates}${arquivo}`);
+      if (!response.ok) throw new Error("Não foi possível ler o arquivo");
+      const texto = await response.text();
+      // Nome do template = nome do arquivo sem extensão
+      const nomeTemplate = arquivo.replace(".txt", "").replace(/_/g, " ");
+      templates[nomeTemplate] = texto;
+    } catch (err) {
+      console.error(`Erro ao carregar ${arquivo}:`, err);
+    }
+  }
+
+  renderTemplates();
+}
+
+// Renderiza no select
+function renderTemplates() {
+  const select = document.getElementById("templateSelect");
+  select.innerHTML = `<option value="">-- Selecione um template --</option>`;
+  for (const nome in templates) {
+    const option = document.createElement("option");
+    option.value = nome;
+    option.textContent = nome;
+    select.appendChild(option);
+  }
+}
+
+// Usar template selecionado
+function usarTemplate() {
+  const select = document.getElementById("templateSelect");
+  const valor = select.value;
+  if (valor) document.getElementById("mensagem").value = templates[valor];
+}
+
+// Abrir nova mensagem (campo vazio)
+function abrirCriarMensagem() {
+  document.getElementById("mensagem").value = "";
+  document.getElementById("mensagem").focus();
+}
+
+// Gerar links WhatsApp
 function gerarLinks() {
   const nomes = document.getElementById('nomes').value.trim().split('\n');
   const telefones = document.getElementById('telefones').value.trim().split('\n');
@@ -13,10 +71,7 @@ function gerarLinks() {
     const primeiroNome = nomeCompleto.split(" ")[0];
     const telefone = telefones[i] ? telefones[i].trim() : "";
 
-    // substitui {nome} pelo primeiro nome
     let msgPersonalizada = mensagemBruta.replace(/\{nome\}/g, primeiroNome);
-
-    // encodeURIComponent garante emojis + quebras de linha
     let link = `https://wa.me/55${telefone}?text=${encodeURIComponent(msgPersonalizada)}`;
 
     tabela.innerHTML += `
@@ -27,3 +82,6 @@ function gerarLinks() {
       </tr>`;
   }
 }
+
+// Inicializar templates ao carregar página
+document.addEventListener("DOMContentLoaded", carregarTemplates);

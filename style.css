@@ -4,7 +4,7 @@ body {
   background: #fdfdfd;
 }
 
-textarea, input {
+textarea, input, select {
   width: 100%;
   margin: 5px 0;
   padding: 8px;
@@ -13,7 +13,7 @@ textarea, input {
 
 button {
   padding: 10px 15px;
-  margin: 10px 0;
+  margin: 10px 5px 10px 0;
   cursor: pointer;
   background: #007bff;
   color: white;
@@ -23,6 +23,10 @@ button {
 
 button:hover {
   background: #0056b3;
+}
+
+.template-controls {
+  margin: 15px 0;
 }
 
 table {
