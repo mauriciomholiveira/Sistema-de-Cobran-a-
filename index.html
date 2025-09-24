@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerador de Links WhatsApp</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Gerador de Links para WhatsApp</h2>
+
+  <label>Nomes (um por linha):</label>
+  <textarea id="nomes" rows="6"></textarea>
+
+  <label>Telefones (um por linha):</label>
+  <textarea id="telefones" rows="6"></textarea>
+
+  <label>Mensagem (use {nome} para personalizar):</label>
+  <textarea id="mensagem" rows="10"></textarea>
+
+  <button onclick="gerarLinks()">Gerar</button>
+
+  <table id="resultado"></table>
+
+  <script src="script.js"></script>
+</body>
+</html>
